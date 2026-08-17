@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://razkarl.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://razkarl.com/projects/</loc><priority>0.8</priority></url>
+  <url><loc>https://razkarl.com/projects/kawaz/</loc><priority>0.6</priority></url>
+  <url><loc>https://razkarl.com/projects/bottle/</loc><priority>0.6</priority></url>
+  <url><loc>https://razkarl.com/projects/tangible-asteroids/</loc><priority>0.6</priority></url>
+  <url><loc>https://razkarl.com/projects/digital-knife/</loc><priority>0.6</priority></url>
+  <url><loc>https://razkarl.com/projects/fll/</loc><priority>0.6</priority></url>
+  <url><loc>https://razkarl.com/projects/i-robot/</loc><priority>0.6</priority></url>
+  <url><loc>https://razkarl.com/projects/heating/</loc><priority>0.6</priority></url>
+</urlset>
