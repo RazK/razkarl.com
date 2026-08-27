@@ -36,3 +36,22 @@
   padding-left: 0;
   padding-right: 0;
 }
+
+/* Project detail pages lay the body out as 1fr 3fr 1fr, while About and
+   Projects use 1fr 2.25fr 1fr. Same total width, wider middle column - so the
+   header started 31px further left on every project page and the wordmark
+   jumped as soon as you clicked into one.
+
+   The wider content column is wanted on those pages (the imagery uses it), so
+   rather than changing the grid, inset the header inside its column back to
+   where the other two pages put it. Ratios, not pixels, so it holds at any
+   width:
+     left offset  = (1/4.25 - 1/5) / (3/5) = 5.882%
+     header width = (2.25/4.25)   / (3/5)  = 88.235%  */
+@media (min-width: 768px) {
+  .header-div-block:not(.home):not(.projects) {
+    width: 88.235%;
+    max-width: none;
+    margin-left: 5.882%;
+  }
+}
