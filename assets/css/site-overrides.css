@@ -1,0 +1,23 @@
+/* site-overrides.css - hand-maintained, loaded after the Webflow export.
+   Webflow gave each page its own per-node grid-area. The About page put its
+   header and footer in the centre column (1 / 2 / 2 / 3) while the Projects
+   page spanned all three (1 / 1 / 2 / 4), so the two pages disagreed about
+   where the page edge was and the header jumped between them.
+   Aligned to the About page. The coloured project bars stay full-bleed -
+   that part is deliberate. */
+
+#w-node-_452916c4-8ba4-2fa3-71a4-9eddbee7e97a-fa0112e1 {
+  grid-area: 1 / 2 / 2 / 3;
+  place-self: start stretch;
+}
+
+#w-node-_7b8ebcd0-6af5-a182-b11b-edad35b3e066-35b3e066 {
+  grid-area: 3 / 2 / 4 / 3;
+  place-self: end stretch;
+}
+
+/* Below the tablet breakpoint the grid collapses to a single column, so the
+   centre-column span would squeeze the header. Hand it back the full width. */
+@media (max-width: 767px) {
+  #w-node-_452916c4-8ba4-2fa3-71a4-9eddbee7e97a-fa0112e1, #w-node-_7b8ebcd0-6af5-a182-b11b-edad35b3e066-35b3e066 { grid-area: auto; place-self: auto; }
+}
