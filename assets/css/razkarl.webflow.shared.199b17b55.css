@@ -2087,7 +2087,7 @@ textarea.w-input, textarea.w-select {
 }
 
 .w-embed-youtubevideo {
-  background-image: url("https://d3e54v103j8qbb.cloudfront.net/static/youtube-placeholder.2b05e7d68d.svg");
+  background-image: url("../../assets/img/youtube-placeholder.svg");
   background-position: 50%;
   background-size: cover;
   width: 100%;
