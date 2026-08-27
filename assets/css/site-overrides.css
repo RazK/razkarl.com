@@ -1,57 +1,52 @@
 /* site-overrides.css - hand-maintained, loaded after the Webflow export.
-   Webflow gave each page its own per-node grid-area. The About page put its
-   header and footer in the centre column (1 / 2 / 2 / 3) while the Projects
-   page spanned all three (1 / 1 / 2 / 4), so the two pages disagreed about
-   where the page edge was and the header jumped between them.
-   Aligned to the About page. The coloured project bars stay full-bleed -
-   that part is deliberate. */
 
-#w-node-_452916c4-8ba4-2fa3-71a4-9eddbee7e97a-fa0112e1 {
-  grid-area: 1 / 2 / 2 / 3;
-  place-self: start stretch;
+   The export gave the same header three different treatments depending on
+   which page it was on, so the wordmark and nav jumped around as you moved
+   through the site. Everything here is keyed on classes, not on Webflow's
+   generated #w-node-... ids, so it survives a re-export and applies to any
+   page added later.
+
+   Webflow writes its grid placement as per-node id rules, which outrank a
+   class selector - hence !important on the two placement rules below, and
+   nowhere else. */
+
+@media (min-width: 768px) {
+
+  /* 1. Placement. The About page puts its header and footer in the centre
+        column; the Projects index spanned all three, so its header sat flush
+        to the page edge while About's was inset. Match About. */
+  .header-div-block.projects {
+    grid-area: 1 / 2 / 2 / 3 !important;
+    place-self: start stretch !important;
+  }
+  .footer {
+    grid-area: 3 / 2 / 4 / 3 !important;
+    place-self: end stretch !important;
+  }
+
+  /* 2. Inset. Project detail pages lay the body out as 1fr 3fr 1fr against
+        1fr 2.25fr 1fr on About and Projects - same total width, wider middle
+        column - which pushed their header 31px further left. The wider column
+        is wanted there (the imagery uses it), so re-inset just the header
+        within it. Ratios, not pixels, so it holds at any window width:
+          left   = (1/4.25 - 1/5) / (3/5) = 5.882%
+          width  = (2.25/4.25)    / (3/5) = 88.235%  */
+  .header-div-block:not(.home):not(.projects) {
+    width: 88.235%;
+    max-width: none;
+    margin-left: 5.882%;
+  }
 }
 
-#w-node-_7b8ebcd0-6af5-a182-b11b-edad35b3e066-35b3e066 {
-  grid-area: 3 / 2 / 4 / 3;
-  place-self: end stretch;
-}
-
-/* Below the tablet breakpoint the grid collapses to a single column, so the
-   centre-column span would squeeze the header. Hand it back the full width. */
-@media (max-width: 767px) {
-  #w-node-_452916c4-8ba4-2fa3-71a4-9eddbee7e97a-fa0112e1, #w-node-_7b8ebcd0-6af5-a182-b11b-edad35b3e066-35b3e066 { grid-area: auto; place-self: auto; }
-}
-
-/* Keep the wordmark and nav pinned in place when toggling About <-> Projects.
-   The export left three different paddings on the same header:
-     .header-div-block           padding 0,    no top padding
-     .header-div-block.home      padding 0,    padding-top 20px
-     .header-div-block.projects  padding 30px, no top padding
-   so the header jumped 30px sideways and 20px vertically between pages.
-   Standardised on the .home values, which the About page already used. */
+/* 3. Padding. Three different values on the same element - .home had 20px on
+      top and none at the sides, .projects had 30px at the sides and none on
+      top, everything else had neither - so the header shifted 30px sideways
+      and 20px vertically between pages. Standardised on .home, which is what
+      the About page already looked like. */
 .header-div-block,
 .header-div-block.home,
 .header-div-block.projects {
   padding-top: 20px;
   padding-left: 0;
   padding-right: 0;
-}
-
-/* Project detail pages lay the body out as 1fr 3fr 1fr, while About and
-   Projects use 1fr 2.25fr 1fr. Same total width, wider middle column - so the
-   header started 31px further left on every project page and the wordmark
-   jumped as soon as you clicked into one.
-
-   The wider content column is wanted on those pages (the imagery uses it), so
-   rather than changing the grid, inset the header inside its column back to
-   where the other two pages put it. Ratios, not pixels, so it holds at any
-   width:
-     left offset  = (1/4.25 - 1/5) / (3/5) = 5.882%
-     header width = (2.25/4.25)   / (3/5)  = 88.235%  */
-@media (min-width: 768px) {
-  .header-div-block:not(.home):not(.projects) {
-    width: 88.235%;
-    max-width: none;
-    margin-left: 5.882%;
-  }
 }
